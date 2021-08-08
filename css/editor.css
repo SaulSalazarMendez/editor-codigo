@@ -1,0 +1,64 @@
+@import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/vs2015.min.css');
+.variables {
+    --color: #A6ADBB;
+    --fondo: #000000cc;
+    --error-color: red;
+    --error-icon: "\2718";
+    --error-fondo: #4A2E33;    
+    --radio: 10px;
+}
+
+.editor {
+    /*background: var(--fondo);
+    color: var(--color);*/
+    border-radius: 6px;
+    /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
+    font-family: "Source Code Pro", monospace;
+    font-size: 12px;
+    font-weight: 400;
+    min-height: 240px;
+    letter-spacing: normal;
+    line-height: 20px;
+    padding: 10px;
+    tab-size: 4;
+    height: 100vh;    
+    overflow: auto;
+    resize: none;    
+}
+
+[contenedor] {
+    display: none;
+}
+
+.activo {
+    display: block;
+}
+.tabs {
+    overflow: hidden;
+    /*border: 1px solid #ccc;
+    background-color: #f1f1f1; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.tabs button{
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    
+}
+
+.tabs button:hover {
+    /*background-color: #ddd;*/
+    filter: invert(100%);
+}
+
+.tabs button.activo {
+    /*background-color: #ccc;*/
+    filter: invert(100%);
+}
