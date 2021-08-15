@@ -1,4 +1,6 @@
-@import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/vs2015.min.css');
+/* @import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/googlecode.min.css'); */
+/* @import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/ocean.min.css'); */
+@import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/atelier-sulphurpool-light.min.css');
 .variables {
     --color: #A6ADBB;
     --fondo: #000000cc;
@@ -10,9 +12,9 @@
 
 .editor {
     /*background: var(--fondo);
-    color: var(--color);*/
+    color: var(--color);
     border-radius: 6px;
-    /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
     font-family: "Source Code Pro", monospace;
     font-size: 12px;
     font-weight: 400;
@@ -23,7 +25,8 @@
     tab-size: 4;
     height: 100vh;    
     overflow: auto;
-    resize: none;    
+    resize: none;
+    line-height: 1.3;    
 }
 
 [contenedor] {
@@ -47,18 +50,17 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-    
+    padding: 4px 5px;
+    transition: 0.3s;    
+    filter: invert(100%);
 }
 
 .tabs button:hover {
     /*background-color: #ddd;*/
-    filter: invert(100%);
+    filter: invert(0%);
 }
 
 .tabs button.activo {
     /*background-color: #ccc;*/
-    filter: invert(100%);
+    filter: invert(0%);
 }

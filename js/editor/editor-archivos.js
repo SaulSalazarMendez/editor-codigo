@@ -26,14 +26,52 @@ class EditorArchivos extends HTMLElement {
         super();
         this.files = [];
         this.contadorTab = 0;
+        this.editoresJar = [];
+    }
+    getTodoElCodigo() {
+        let codigo = [];
+        for(let editor of this.editoresJar) {
+            codigo.push(editor.jar.toString());
+        }
+        return codigo;
+    }
+    /**
+     * Emite cambio del archivo modificado
+     * @param {HTMLElement} target 
+     * @param {string} codigo 
+     */
+    emiteCambio(target, codigo) {
+        let ev = new CustomEvent('cambio-editor', {
+            detail: {
+                target: target,                
+                codigo: codigo
+            }
+        });        
+        this.dispatchEvent(ev);
+    }
+    /**
+     * Emite el clip del icono que se haya dado clic
+     * @param {HTMLElement} target 
+     * @param {number} con 
+     */
+    emiteclipIcono(target, con) {
+        let ev = new CustomEvent('click-icono', {
+            detail: {
+                target: target,
+                index: con-1
+            }
+        })
+        this.dispatchEvent(ev);
     }
 
-    creaTab(titulo, con) {
+    creaTab(titulo, icono, con) {
         let tab = document.createElement('button');
         this.tabs.append(tab);
-        tab.innerHTML = `${titulo}`;
+        tab.innerHTML = `<span icono>${icono}</span> ${titulo}`;
         tab.id = `tab-${con}`;
-        tab.setAttribute('tab', '');        
+        tab.setAttribute('tab', '');
+        let spanIcono = tab.querySelector('[icono]');
+        spanIcono.addEventListener('click', ev => this.emiteclipIcono(spanIcono, con))
         return tab;
     }
 
@@ -74,7 +112,16 @@ class EditorArchivos extends HTMLElement {
             titulo: '',
             tipo: '',
             codigo: '',
-            fcolor: null            
+            icono: '',
+            fcolor: null
+        }
+    }
+
+    addEventosEditoresJar() {        
+        for (let editor of this.editoresJar) {
+            editor.jar.onUpdate( codigo => {
+                this.emiteCambio(editor.editor, codigo);
+            });            
         }
     }
 
@@ -83,15 +130,20 @@ class EditorArchivos extends HTMLElement {
         ${html}
         `;
         this.tabs = this.querySelector('.tabs');
-        this.editores = this.querySelector('.editores');
+        this.editores = this.querySelector('.editores');        
         for(let item of this.files) {
             this.contadorTab ++;
             let dato = this.getMetadataFile();
             dato = Object.assign(dato, item);            
-            let tab = this.creaTab(item.titulo, this.contadorTab);
+            let tab = this.creaTab(dato.titulo, dato.icono, this.contadorTab);
             let editor = this.creaEditor(dato, this.contadorTab);
             this.addListenersTabEditor(tab, editor.editor);
+            this.editoresJar.push(editor);            
+            if (this.contadorTab == 1){
+                this.activa(tab, editor.editor);
+            }            
         }
+        this.addEventosEditoresJar();
     }
 
     setFiles(files) {
