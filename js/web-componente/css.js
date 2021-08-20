@@ -1,5 +1,5 @@
 export const css = /*css*/`
-@import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/atelier-sulphurpool-light.min.css');
+@import url('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/atom-one-light.min.css');
 
 .editor {   
     font-family: "Source Code Pro", monospace;
@@ -15,8 +15,6 @@ export const css = /*css*/`
     resize: none;
     line-height: 1.3;    
 }
-
-.editor::selection { background: blue; }
 
 [contenedor] {
     display: none;
