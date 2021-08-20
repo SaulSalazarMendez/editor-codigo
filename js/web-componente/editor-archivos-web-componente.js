@@ -131,8 +131,7 @@ class EditorArchivos extends HTMLElement {
         ${html}
         `;
         this.tabs = this.querySelector('.tabs');
-        this.variables = this.querySelector('[variables]');
-        console.log(this.variables);
+        this.variables = this.querySelector('[variables]');        
         this.editores = this.querySelector('.editores');        
         for(let item of this.files) {
             this.contadorTab ++;
